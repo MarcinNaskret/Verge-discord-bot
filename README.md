@@ -1,11 +1,11 @@
 # Verge-discord-bot
-Simple discord bot for Verge coin giving information about XVG/Verge:
--Price USD
--Price BTC
--Percent changes 1h,24h,7d
--Market Cap
--All Time High
--Volume 24h
+Simple discord bot for Verge coin giving information about XVG/Verge:<br>
+-Price USD<br>
+-Price BTC<br>
+-Percent changes 1h,24h,7d<br>
+-Market Cap<br>
+-All Time High<br>
+-Volume 24h<br>
 <img src="https://image.ibb.co/fT7sqn/verge.png" alt="XVG/Verge anonymous crypto currency" border="0"></a>
 
 
