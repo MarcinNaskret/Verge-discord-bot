@@ -23,7 +23,7 @@ async def on_message(message):
     if message.content.lower().startswith('!help'):
 
         userID = message.author.id
-        await client.send_message(message.channel, "<@{}> ```Price ->> !prices\n{}/USD -> !price usd \n{}/BTC -> !price btc \nCMC RANK -> !rank\nProcent change -> !change\n24h Volume -> !volume\nMarket Cap -> !cap```".format(userID,coin_symbol,coin_symbol))
+        await client.send_message(message.channel, "<@{}> ```Price ->> !prices\n{}/USD -> !price usd \n{}/BTC -> !price btc \nCMC RANK -> !rank\nPercent change -> !change\n24h Volume -> !volume\nMarket Cap -> !cap```".format(userID,coin_symbol,coin_symbol))
 
     if message.content.lower().startswith('!price btc'):
         price_btc = (coin[0]["price_btc"])
