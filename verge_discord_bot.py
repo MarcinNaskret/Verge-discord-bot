@@ -65,6 +65,7 @@ async def on_message(message):
         page = requests.get(url)
         soup = BeautifulSoup(page.text, 'html.parser')
         ath = soup.find_all('h4')[0].get_text()
+        ath_date = soup.find_all('small')[0].get_text()
         userID = message.author.id
-        await client.send_message(message.channel, "<@{}> ```{} All Time High is {} USD.```".format(userID,coin_symbol,ath))        
+        await client.send_message(message.channel, "<@{}> ```{} All Time High is {} USD at {}.```".format(userID,coin_symbol,ath,ath_date))        
 client.run("<token>")#Replace <token> with discord app bot token
