@@ -16,6 +16,7 @@ client = commands.Bot(command_prefix = "!")
 
 @client.event
 async def on_ready():
+    print("Logged in as: {} with id: {} ".format(client.user.name,client.user.id))
     print("Bot is online and connected to Discord")
 
 @client.event
