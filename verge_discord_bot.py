@@ -1,11 +1,7 @@
-import discord
-from discord.ext import commands
-import coinmarketcap
-
+import discord,coinmarketcap,requests
+from bs4 import BeautifulSoup
 
 market = coinmarketcap.Market()
-
-
 
 coin_name = "verge"
 coin = market.ticker(coin_name)
@@ -24,7 +20,7 @@ async def on_message(message):
     if message.content.lower().startswith('!help'):
 
         userID = message.author.id
-        await client.send_message(message.channel, "<@{}> ```Price ->> !prices\n{}/USD -> !price usd \n{}/BTC -> !price btc \nCMC RANK -> !rank\nPercent change -> !change\n24h Volume -> !volume\nMarket Cap -> !cap```".format(userID,coin_symbol,coin_symbol))
+        await client.send_message(message.channel, "<@{}> ```Price ->> !prices\n{}/USD -> !price usd \n{}/BTC -> !price btc \nAll Time High -> !ath\nCMC RANK -> !rank\nPercent change -> !change\n24h Volume -> !volume\nMarket Cap -> !cap```".format(userID,coin_symbol,coin_symbol))
 
     if message.content.lower().startswith('!price btc'):
         price_btc = (coin[0]["price_btc"])
@@ -63,5 +59,11 @@ async def on_message(message):
         volume = float(coin[0]["24h_volume_usd"])
         userID = message.author.id
         await client.send_message(message.channel, "<@{}> ```{} 24 hour volume is {:0.0f} USD.```".format(userID,coin_symbol,volume))
-        
+    if message.content.lower().startswith('!ath'):
+        url = 'https://athcoinindex.com/currencies/{}'.format(coin_name)
+        page = requests.get(url)
+        soup = BeautifulSoup(page.text, 'html.parser')
+        ath = soup.find_all('h4')[0].get_text()
+        userID = message.author.id
+        await client.send_message(message.channel, "<@{}> ```{} All Time High is {} USD.```".format(userID,coin_symbol,ath))        
 client.run("<token>")#Replace <token> with discord app bot token
